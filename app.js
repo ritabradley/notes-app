@@ -18,8 +18,7 @@ yargs.command({
     }
   },
   handler(argv) {
-    console.log(chalk.bgRgb(2, 209, 57).white.bold(`Title: ${argv.title}`));
-    console.log(chalk.cyanBright(`Body: ${argv.body}`));
+    notes.addNote(argv.title, argv.body);
   }
 });
 
@@ -29,18 +28,12 @@ yargs.command({
   builder: {
     title: {
       describe: 'Note title',
-      demandOption: true
-    },
-    body: {
-      describe: 'Note body',
-      demandOption: true
+      demandOption: true,
+      type: 'string'
     }
   },
   handler(argv) {
-    console.log(
-      chalk.bgRed.bgRgb(195, 0, 0).white.bold(`Title: ${argv.title}`)
-    );
-    console.log(chalk.cyanBright(`Body: ${argv.body}`));
+    notes.removeNote(argv.title);
   }
 });
 yargs.command({
